@@ -1,0 +1,50 @@
+fail_fast: true
+minimum_pre_commit_version: 3.7.1
+default_language_version:
+  python: python3.11
+repos:
+  - repo: https://github.com/psf/black
+    rev: 24.10.0
+    hooks:
+      - id: black
+        name: Lint
+        language_version: python3.10
+        language: python
+        entry: black uscodekit/
+        args:
+          - --safe
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: mixed-line-ending
+      - id: check-byte-order-marker
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-vcs-permalinks
+      - id: debug-statements
+      - id: check-yaml
+        files: .*\.(yaml|yml)$
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 7.1.1
+    hooks:
+      - id: flake8
+        name: Code style
+        language_version: python3.10
+        language: python
+        entry: flake8 uscodekit/
+
+  - repo: local
+    hooks:
+      - id: pytest
+        name: Run Pytest
+        entry: poetry run pytest --cov-report=term-missing
+        language: system
+        types: [python]
+      # - id: coverage-badge
+      #   name: Generate Coverage Badge
+      #   entry: poetry run coverage-badge -o ./docs/coverage.svg -f
+      #   language: system
+      #   types: [python]
