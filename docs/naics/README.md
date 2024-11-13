@@ -143,6 +143,29 @@ Output:
 }
 ```
 
+3 digits example
+
+```python
+from uscodekit.services.naics import industry_hierarchy
+
+hierarchy = industry_hierarchy('921')
+print(hierarchy)
+```
+
+Output:
+
+```json
+{
+  "code": "921",
+  "title": "Executive, Legislative, and Other General Government Support",
+  "sector": { "code": "92", "title": "Public Administration" },
+  "subsector": {
+    "code": "921",
+    "title": "Executive, Legislative, and Other General Government Support"
+  }
+}
+```
+
 ## Error Handling
 
 Each function returns `None` if an error occurs, ensuring that unexpected input or server issues do not interrupt the application's flow.
