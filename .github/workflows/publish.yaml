@@ -1,0 +1,95 @@
+name: Publish USCodeKit
+
+on:
+  push:
+    tags:
+      - "v*.*.*"  # Trigger workflow when a new version tag is pushed (e.g., v1.0.0)
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    environment: pypi  # Specify the environment for accessing the secrets
+
+    steps:
+      # Checkout the repository
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      # Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"  # or any version compatible with your package
+
+      # Install Poetry
+      - name: Install Poetry
+        run: curl -sSL https://install.python-poetry.org | python3 -
+
+      # Configure Poetry to use the project environment
+      - name: Configure Poetry
+        run: poetry config virtualenvs.in-project true
+
+      # Install dependencies
+      - name: Install dependencies
+        run: poetry install
+
+      # Import GPG key (from GitHub secrets in the PyPI environment)
+      - name: Import GPG key
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        run: |
+          echo "$GPG_PRIVATE_KEY" | base64 --decode | gpg --batch --import
+          echo "GPG key imported successfully."
+
+      # Build the package
+      - name: Build the USCodeKit package
+        run: poetry build
+
+      # Sign the package
+      - name: Sign the USCodeKit package
+        env:
+          GPG_TTY: $(tty)
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        run: |
+          gpg --batch --yes --passphrase "$GPG_PASSPHRASE" --detach-sign -a dist/*.tar.gz
+          gpg --batch --yes --passphrase "$GPG_PASSPHRASE" --detach-sign -a dist/*.whl
+
+      # Create GitHub Release
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: Release ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+
+      # Upload release assets to GitHub
+      - name: Upload release assets
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: dist/*.tar.gz
+          asset_name: uscodekit.tar.gz
+          asset_content_type: application/gzip
+
+      - name: Upload wheel file
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: dist/*.whl
+          asset_name: uscodekit.whl
+          asset_content_type: application/zip
+
+      # Publish to PyPI
+      - name: Publish to PyPI
+        env:
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_API_TOKEN }}  # Use the token stored in secrets
+        run: poetry publish --build --username __token__ --password ${{ secrets.PYPI_API_TOKEN }}

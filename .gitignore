@@ -39,3 +39,4 @@ key.key
 exp.ipynb
 poetry.lock
 .venv/
+creds/
