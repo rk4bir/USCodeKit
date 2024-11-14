@@ -38,13 +38,51 @@ repos:
 
   - repo: local
     hooks:
-      - id: pytest
-        name: Run Pytest
+      - id: pytest-py36
+        name: Run Pytest with Python 3.6
         entry: poetry run pytest --cov-report=term-missing
         language: system
         types: [python]
-      # - id: coverage-badge
-      #   name: Generate Coverage Badge
-      #   entry: poetry run coverage-badge -o ./docs/coverage.svg -f
-      #   language: system
-      #   types: [python]
+        python_version: 3.6
+
+      - id: pytest-py37
+        name: Run Pytest with Python 3.7
+        entry: poetry run pytest --cov-report=term-missing
+        language: system
+        types: [python]
+        python_version: 3.7
+
+      - id: pytest-py38
+        name: Run Pytest with Python 3.8
+        entry: poetry run pytest --cov-report=term-missing
+        language: system
+        types: [python]
+        python_version: 3.8
+
+      - id: pytest-py39
+        name: Run Pytest with Python 3.9
+        entry: poetry run pytest --cov-report=term-missing
+        language: system
+        types: [python]
+        python_version: 3.9
+
+      - id: pytest-py310
+        name: Run Pytest with Python 3.10
+        entry: poetry run pytest --cov-report=term-missing
+        language: system
+        types: [python]
+        python_version: 3.10
+
+      - id: pytest-py311
+        name: Run Pytest with Python 3.11
+        entry: poetry run pytest --cov-report=term-missing
+        language: system
+        types: [python]
+        python_version: 3.11
+
+      - id: pytest-py312
+        name: Run Pytest with Python 3.12
+        entry: poetry run pytest --cov-report=term-missing
+        language: system
+        types: [python]
+        python_version: 3.12

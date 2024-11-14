@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="./docs/logo.png" alt="USCodeKit_logo" width="200"/>
+  <img src="https://raw.githubusercontent.com/rk4bir/USCodeKit/refs/heads/main/docs/logo.png" alt="USCodeKit_logo" width="200"/>
 </p>
 
 <h1 align="center">USCodeKit</h1>
 
 <p align="center">
-  <img src="./docs/coverage.svg" alt="Coverage"/>
+  <img src="https://raw.githubusercontent.com/rk4bir/USCodeKit/887586931b051e04e47cae67e97883324813a7cf/docs/coverage.svg" alt="Coverage"/>
 </p>
 
 # USCodeKit
@@ -16,12 +16,12 @@
 
 > [Hosted Docs](https://rk4bir.github.io/USCodeKit/)
 
-- [Installation](#installation)
-- [Getting Started](./docs/README.md)
+- [Installation](https://rk4bir.github.io/USCodeKit/#installation)
+- [Getting Started](https://rk4bir.github.io/USCodeKit/)
 - **Modules**
-  - [phone](./docs/phone/README.md)
-  - [zip_code](./docs/zip_code/README.md)
-  - [NAICS (2022)](./docs//naics/README.md)
+  - [phone](https://rk4bir.github.io/USCodeKit/phone/)
+  - [zip_code](https://rk4bir.github.io/USCodeKit/zip_code/)
+  - [NAICS (2022)](https://rk4bir.github.io/USCodeKit/naics/)
 
 ## Installation
 
