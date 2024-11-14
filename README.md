@@ -13,8 +13,24 @@
 > A comprehensive package that includes all the essential tools commonly used for US phone, zip code info, (upcoming more...)
 
 ## Docs
+- [Installation](#installation)
 - [Getting Started](./docs/README.md)
 - **Modules**
   - [phone](./docs/phone/README.md)
   - [zip_code](./docs/zip_code/README.md)
   - [NAICS (2022)](./docs//naics/README.md)
+
+
+## Installation
+
+Using `pip`
+
+```bash
+pip install uscodekit
+```
+
+Using `poetry`
+
+```bash
+poetry add uscodekit
+```
