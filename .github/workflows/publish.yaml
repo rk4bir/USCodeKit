@@ -67,7 +67,7 @@ jobs:
           files: |
             dist/*.tar.gz
             dist/*.whl
-
+          token: ${{ secrets.CUSTOM_GH_TOKEN }}
       # Publish to PyPI
       - name: Publish to PyPI
         env:
