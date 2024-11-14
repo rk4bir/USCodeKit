@@ -15,7 +15,7 @@ packages = [
 
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = ">=3.8"
 cryptography = "^43.0.3"
 
 
