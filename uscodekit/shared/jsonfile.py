@@ -1,13 +1,14 @@
 # uscodekit/shared/jsonfile.py
 
 import json
+from typing import List, Dict, Union
 
 from cryptography.fernet import Fernet
 
 from uscodekit.configs import Config
 
 
-def decrypt(file_path: str) -> dict:
+def decrypt(file_path: str) -> Dict:
     with open(Config.encryption_key, "rb") as key_file:
         key = key_file.read()
 
@@ -22,7 +23,7 @@ def decrypt(file_path: str) -> dict:
     return json_data
 
 
-def encrypt(file_path: str, data: dict) -> None:
+def encrypt(file_path: str, data: Dict) -> None:
     with open(Config.encryption_key, "rb") as key_file:
         key = key_file.read()
 
@@ -33,7 +34,7 @@ def encrypt(file_path: str, data: dict) -> None:
         encrypted_file.write(encrypted_data)
 
 
-def read_data(file_path: str) -> list[dict] | dict | None:
+def read_data(file_path: str) -> Union[List[Dict], Dict, None]:
     try:
         with open(file_path, "r") as f:
             data = f.read()
@@ -43,7 +44,7 @@ def read_data(file_path: str) -> list[dict] | dict | None:
         return None
 
 
-def write_data(file_path: str, data: list[dict] | dict) -> bool:
+def write_data(file_path: str, data: Union[List[Dict], Dict]) -> bool:
     try:
         with open(file_path, "w") as f:
             json.dump(data, f)

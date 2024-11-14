@@ -1,7 +1,7 @@
 # src/phone.py
 
 import re
-
+from typing import Optional, List, Dict
 from uscodekit.services.geo import GeoService
 
 
@@ -32,11 +32,10 @@ def is_valid_phone(phone: str) -> bool:
     Returns:
         bool: True if the phone number matches the U.S. phone number format, False otherwise.
     """
-    """Validates if the provided phone number matches the U.S. phone number format."""
     return bool(US_PHONE_PATTERN.fullmatch(phone))
 
 
-def extract_phone_number(text: str) -> str | None:
+def extract_phone_number(text: str) -> Optional[str]:
     """
     Formats a valid U.S. phone number to the standard format: (123) 456-7890.
 
@@ -53,8 +52,6 @@ def extract_phone_number(text: str) -> str | None:
         >>> extract_phone_number("1234567890")
         '(123) 456-7890'
     """
-    """Formats a valid U.S. phone number to the standard format: (123) 456-7890."""
-
     try:
         matched_phone = US_PHONE_PATTERN.findall(text)[0]
         phone = "".join(matched_phone)
@@ -64,7 +61,7 @@ def extract_phone_number(text: str) -> str | None:
         return None
 
 
-def extract_phone_numbers(text: str) -> list[str]:
+def extract_phone_numbers(text: str) -> List[str]:
     """
     Extracts all U.S. phone numbers from a given text.
 
@@ -82,7 +79,6 @@ def extract_phone_numbers(text: str) -> list[str]:
         >>> extract_phone_numbers("Contact us at (123) 456-7890 or (987) 654-3210.")
         ['(123) 456-7890', '(987) 654-3210']
     """
-    """Extracts all U.S. phone numbers from a given text."""
     results = []
     try:
         matched_phones = US_PHONE_PATTERN.findall(text)
@@ -134,7 +130,6 @@ def cleaned_phone(phone: str) -> str:
         ValueError: If the cleaned phone number does not have exactly 10 digits, or if it has
                     11 digits but does not start with the country code '1'.
     """
-    """Cleans up a U.S. phone number by removing all non-numeric characters."""
     digits = re.sub(r"\D", "", phone)
     if len(digits) == 10:
         return digits
@@ -144,7 +139,7 @@ def cleaned_phone(phone: str) -> str:
         raise ValueError("Invalid U.S. phone number for cleaning")
 
 
-def prettify(phone_str: str) -> str | None:
+def prettify(phone_str: str) -> Optional[str]:
     """
     Formats a US phone number string into a more readable format.
 
@@ -173,7 +168,7 @@ def prettify(phone_str: str) -> str | None:
     return formatted_number
 
 
-def phone_number_insight(phone: str) -> dict:
+def phone_number_insight(phone: str) -> Dict[str, Optional[str]]:
     """
     Provides detailed information about a given phone number.
 
