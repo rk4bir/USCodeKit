@@ -3,12 +3,12 @@ name: Publish USCodeKit
 on:
   push:
     tags:
-      - "v*.*.*"  # Trigger workflow when a new version tag is pushed (e.g., v1.0.0)
+      - "v*.*.*" # Trigger workflow when a new version tag is pushed (e.g., v1.0.0)
 
 jobs:
   release:
     runs-on: ubuntu-latest
-    environment: pypi  # Specify the environment for accessing the secrets
+    environment: pypi # Specify the environment for accessing the secrets
 
     steps:
       # Checkout the repository
@@ -19,7 +19,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.11"  # or any version compatible with your package
+          python-version: "3.11" # or any version compatible with your package
 
       # Install Poetry
       - name: Install Poetry
@@ -34,13 +34,11 @@ jobs:
         run: poetry install
 
       # Import GPG key (from GitHub secrets in the PyPI environment)
-      - name: Import GPG key
+      - name: Import GPG Key
+        uses: crazy-max/ghaction-import-gpg@v1
         env:
           GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-        run: |
-          echo "$GPG_PRIVATE_KEY" | base64 --decode | gpg --batch --import
-          echo "GPG key imported successfully."
+          PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
       # Build the package
       - name: Build the USCodeKit package
@@ -91,5 +89,5 @@ jobs:
       # Publish to PyPI
       - name: Publish to PyPI
         env:
-          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_API_TOKEN }}  # Use the token stored in secrets
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_API_TOKEN }} # Use the token stored in secrets
         run: poetry publish --build --username __token__ --password ${{ secrets.PYPI_API_TOKEN }}
