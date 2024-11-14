@@ -1,13 +1,18 @@
+import os
 from functools import lru_cache
 
-from uscodekit.configs import NAICS2022Config
+from uscodekit.configs import NAICS2022Config, Config
 from uscodekit.shared.jsonfile import decrypt
 
 
 class NAICS2022Service:
 
     def __init__(self):
-        self.data = self.search_database
+        if os.path.isfile(Config.encryption_key):
+            self.data = self.search_database
+        else:
+            print(Config.file_missing_message)
+            self.data = []
 
     @property
     @lru_cache(maxsize=1)
@@ -21,7 +26,12 @@ class NAICS2022Service:
         Returns:
             list[dict]: A list of dictionaries containing the search database data.
         """
-        return decrypt(NAICS2022Config.encrypted_database_fp)
+
+        if os.path.isfile(Config.encryption_key):
+            return decrypt(NAICS2022Config.encrypted_database_fp)
+        else:
+            print(Config.file_missing_message)
+            return []
 
     def get(self, code: str) -> dict | None:
         """

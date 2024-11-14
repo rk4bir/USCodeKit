@@ -57,6 +57,7 @@ def get_database() -> list[dict]:
         return []
     except FileNotFoundError as e:
         print("FAILED")
+        print(Config.file_missing_message)
         return []
 
 
@@ -82,9 +83,7 @@ class GeoService:
     @property
     def database(self):
         if not os.path.isfile(GeoConfig.encrypted_database_fp):
-            print(
-                "'''\nPlease contact the owner of this package for the \ndatabase and encryption key. To get original results.\n'''".upper()
-            )
+            print(Config.file_missing_message)
             return []
 
         cached = get_cached_database()

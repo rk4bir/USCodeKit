@@ -2,8 +2,9 @@ from pathlib import Path
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-SRC_DIR = PROJECT_ROOT / "src"
-DATA_DIR = PROJECT_ROOT / "data"
+SRC_DIR = PROJECT_ROOT / "uscodekit"
+DATA_DIR = SRC_DIR / "data"
+CREDS_DIR = SRC_DIR / "creds"
 
 
 class DirConfig:
@@ -29,4 +30,5 @@ class NAICS2022Config:
 class Config:
     dir = DirConfig
     geo = GeoConfig
-    encryption_key = PROJECT_ROOT / "key.key"
+    encryption_key = CREDS_DIR / "key.key"
+    file_missing_message = "'''\nPlease contact the owner of this package for the \ngeo database and encryption key. To get original results.\nhttps://github.com/rk4bir\n'''"
