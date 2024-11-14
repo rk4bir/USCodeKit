@@ -10,7 +10,7 @@
 
 # USCodeKit
 
-> A comprehensive package that includes all the essential tools commonly used for US phone, zip code info, (upcoming more...)
+> A comprehensive package that includes all the essential tools commonly used for US phone, zip code info, NAICS (2022), (upcoming more...)
 
 ## Docs
 - [Installation](#installation)

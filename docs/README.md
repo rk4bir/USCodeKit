@@ -4,7 +4,7 @@
 
 <h1 align="center">USCodeKit</h1>
 
-> This module provides utilities for validating, formatting, extracting, and analyzing U.S. phone numbers and ZIP codes. It includes functions for cleaning and prettifying phone numbers, extracting area codes, and gathering additional insights based on phone numbers or ZIP codes.
+> This module provides utilities for validating, formatting, extracting, and analyzing U.S. phone numbers and codes.
 
 ## Table of Contents
 
