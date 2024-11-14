@@ -33,7 +33,7 @@ NAICS organizes codes in a hierarchical structure:
 ### Importing the Module
 
 ```python
-from uscodekit.services.naics import NAICS2022Service
+from uscodekit import naics2k22
 ```
 
 ## Functions
@@ -53,9 +53,9 @@ Searches the NAICS database for matches on both `code` and `title`, with results
 #### Example
 
 ```python
-from uscodekit.services.naics import search
+from uscodekit import naics2k22
 
-results = search('Public Finance')
+results = naics2k22.search('Public Finance')
 print(results)
 ```
 
@@ -68,7 +68,7 @@ Output:
 ]
 ```
 
-### `industry(code: str) -> dict | None`
+### `industry_name(code: str) -> dict | None`
 
 Retrieves details for a specific NAICS code.
 
@@ -82,9 +82,9 @@ Retrieves details for a specific NAICS code.
 #### Example
 
 ```python
-from uscodekit.services.naics import industry
+from uscodekit import naics2k22
 
-result = industry('921130')
+result = naics2k22.industry_name('921130')
 print(result)
 ```
 
@@ -108,9 +108,9 @@ Generates the full industry hierarchy for a specified NAICS code.
 #### Example
 
 ```python
-from uscodekit.services.naics import industry_hierarchy
+from uscodekit import naics2k22
 
-hierarchy = industry_hierarchy('921130')
+hierarchy = naics2k22.industry_hierarchy('921130')
 print(hierarchy)
 ```
 
@@ -146,9 +146,9 @@ Output:
 3 digits example
 
 ```python
-from uscodekit.services.naics import industry_hierarchy
+from uscodekit import naics2k22
 
-hierarchy = industry_hierarchy('921')
+hierarchy = naics2k22.industry_hierarchy('921')
 print(hierarchy)
 ```
 

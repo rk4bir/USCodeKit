@@ -17,4 +17,4 @@
 - **Modules**
   - [phone](./docs/phone/README.md)
   - [zip_code](./docs/zip_code/README.md)
-  - [NAICS](./docs//naics/README.md)
+  - [NAICS (2022)](./docs//naics/README.md)

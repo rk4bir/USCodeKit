@@ -13,6 +13,15 @@ This module provides utilities for validating, formatting, extracting, and analy
   - [extract_all_zip_codes](#extract_all_zip_codes)
   - [zip_code_insight](#zip_code_insight)
 
+## Import
+```python
+from uscodekit.zip_code import (
+    extract_zip_code,
+    extract_all_zip_codes,
+    zip_code_insight
+)
+```
+
 ## Functions
 
 ### extract_zip_code

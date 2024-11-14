@@ -210,7 +210,7 @@ Below are examples demonstrating the functions’ flexibility and handling of mu
 ```python
 from uscodekit.phone import (
     is_valid_phone,
-    format_phone_number,
+    extract_phone_number,
     extract_phone_numbers,
     get_area_code,
     cleaned_phone,
@@ -222,9 +222,6 @@ from uscodekit.phone import (
 print(is_valid_phone("(123) 456-7890"))      # True
 print(is_valid_phone("+1 123 456 7890"))     # True
 print(is_valid_phone("12345"))               # False
-
-# Format a valid phone number
-print(format_phone_number("1234567890"))     # "(123) 456-7890"
 
 # Extract multiple phone numbers from text
 text = "Contact at (123) 456-7890, or 987-654-3210."

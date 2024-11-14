@@ -20,13 +20,13 @@
 Using `pip`
 
 ```bash
-pip install uscodeiq
+pip install uscodekit
 ```
 
 Using `poetry`
 
 ```bash
-poetry add uscodeiq
+poetry add uscodekit
 ```
 
 ## Usage

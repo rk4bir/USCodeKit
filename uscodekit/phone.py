@@ -4,6 +4,7 @@ import re
 
 from uscodekit.services.geo import GeoService
 
+
 US_PHONE_PATTERN = re.compile(
     r"""
     (?:(?:\+1)[\s.-]?)?                 # Optional country code (+1)

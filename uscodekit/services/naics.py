@@ -1,8 +1,7 @@
-import os
 from functools import lru_cache
 
 from uscodekit.configs import NAICS2022Config
-from uscodekit.shared.jsonfile import read_data, decrypt
+from uscodekit.shared.jsonfile import decrypt
 
 
 class NAICS2022Service:
@@ -36,6 +35,21 @@ class NAICS2022Service:
         """
         res = list(filter(lambda x: x["code"] == code, self.data))
         return res[0] if res else None
+
+    def industry_name(self, code: str) -> dict | None:
+        """
+        Retrieve the industry name from the search database that matches the given code.
+
+        Args:
+            code (str): The code to search for in the database.
+
+        Returns:
+            dict | None: The dictionary that matches the given code if found, otherwise None.
+        """
+        try:
+            return self.get(code)["title"]
+        except Exception as e:
+            return None
 
     def search(self, query: str, top_n: int = 10) -> list[dict]:
         """
@@ -88,7 +102,7 @@ class NAICS2022Service:
         # Return only the matched entries, without scores
         return [entry for _, entry in results[:top_n]]
 
-    def generate_hierarchy(self, code: str) -> dict | None:
+    def industry_hierarchy(self, code: str) -> dict | None:
         """
         Generates a hierarchical representation of NAICS code data based on the given code,
         handling different lengths (2, 3, 4, 5, or 6 digits).
