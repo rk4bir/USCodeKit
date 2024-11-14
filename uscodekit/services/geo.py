@@ -5,15 +5,15 @@ import gzip
 import shutil
 import json
 from functools import lru_cache
+from typing import List, Dict
 
 from cryptography.fernet import Fernet
-
 
 from uscodekit.configs import Config, GeoConfig
 
 
 @lru_cache(maxsize=1)
-def get_cached_database() -> list[dict]:
+def get_cached_database() -> List[Dict]:
     try:
         if not os.path.isfile(GeoConfig.decompressed_json_fp):
             return False
@@ -25,7 +25,7 @@ def get_cached_database() -> list[dict]:
         return []
 
 
-def get_database() -> list[dict]:
+def get_database() -> List[Dict]:
     try:
         print("Loading encrypted database...", end="")
         # retrieve encryption key
@@ -81,7 +81,7 @@ class GeoService:
     """
 
     @property
-    def database(self):
+    def database(self) -> List[Dict]:
         if not os.path.isfile(GeoConfig.encrypted_database_fp):
             print(Config.file_missing_message)
             return []
@@ -91,10 +91,10 @@ class GeoService:
             return cached
         return get_database()
 
-    def get_phone_info(self, area_code: str) -> dict:
+    def get_phone_info(self, area_code: str) -> Dict:
         result = list(filter(lambda x: x["npa"] == area_code, self.database))
         return result[0] if result else {}
 
-    def get_zip_code_info(self, zip_code: str) -> dict:
+    def get_zip_code_info(self, zip_code: str) -> Dict:
         result = list(filter(lambda x: x["zipCode"] == zip_code, self.database))
         return result[0] if result else {}

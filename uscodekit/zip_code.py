@@ -1,9 +1,9 @@
 import re
-
+from typing import Optional, List, Dict, Any
 from uscodekit.services.geo import GeoService
 
 
-def extract_zip_code(text) -> str | None:
+def extract_zip_code(text: str) -> Optional[str]:
     """
     Extracts a US ZIP code from the given text.
 
@@ -14,7 +14,7 @@ def extract_zip_code(text) -> str | None:
         text (str): The text from which to extract the ZIP code.
 
     Returns:
-        str | None: The extracted ZIP code if found, otherwise None.
+        Optional[str]: The extracted ZIP code if found, otherwise None.
     """
     # Regular expression for US ZIP codes: 5-digit or ZIP+4 format
     zip_code_pattern = r"\b\d{5}(?:-\d{4})?\b"
@@ -26,7 +26,7 @@ def extract_zip_code(text) -> str | None:
         return None
 
 
-def extract_all_zip_codes(text) -> list[str]:
+def extract_all_zip_codes(text: str) -> List[str]:
     """
     Extracts all US ZIP codes from the given text.
 
@@ -37,7 +37,7 @@ def extract_all_zip_codes(text) -> list[str]:
         text (str): The text from which to extract the ZIP codes.
 
     Returns:
-        list[str]: A list of extracted ZIP codes (empty if none found).
+        List[str]: A list of extracted ZIP codes (empty if none found).
     """
     # Regular expression for US ZIP codes: 5-digit or ZIP+4 format
     zip_code_pattern = r"\b\d{5}(?:-\d{4})?\b"
@@ -45,7 +45,7 @@ def extract_all_zip_codes(text) -> list[str]:
     return re.findall(zip_code_pattern, text)
 
 
-def zip_code_insight(zip_code: str) -> dict:
+def zip_code_insight(zip_code: str) -> Dict[str, Any]:
     """
     Provides detailed information about a given ZIP code.
 
@@ -57,7 +57,7 @@ def zip_code_insight(zip_code: str) -> dict:
         zip_code (str): The ZIP code for which information is to be retrieved.
 
     Returns:
-        dict: A dictionary containing the following keys:
+        Dict[str, Any]: A dictionary containing the following keys:
             - zipCode (str): The provided ZIP code.
             - areaCode (str): The area code associated with the ZIP code.
             - city (str): The city associated with the ZIP code.

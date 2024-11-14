@@ -1,5 +1,6 @@
 import os
 from functools import lru_cache
+from typing import List, Optional, Dict
 
 from uscodekit.configs import NAICS2022Config, Config
 from uscodekit.shared.jsonfile import decrypt
@@ -16,7 +17,7 @@ class NAICS2022Service:
 
     @property
     @lru_cache(maxsize=1)
-    def search_database(self) -> list[dict]:
+    def search_database(self) -> List[Dict]:
         """
         Property that returns a cached list of dictionaries representing the search database.
 
@@ -33,7 +34,7 @@ class NAICS2022Service:
             print(Config.file_missing_message)
             return []
 
-    def get(self, code: str) -> dict | None:
+    def get(self, code: str) -> Optional[Dict]:
         """
         Retrieve a dictionary from the search database that matches the given code.
 
@@ -46,7 +47,7 @@ class NAICS2022Service:
         res = list(filter(lambda x: x["code"] == code, self.data))
         return res[0] if res else None
 
-    def industry_name(self, code: str) -> dict | None:
+    def industry_name(self, code: str) -> Optional[str]:
         """
         Retrieve the industry name from the search database that matches the given code.
 
@@ -61,7 +62,7 @@ class NAICS2022Service:
         except Exception as e:
             return None
 
-    def search(self, query: str, top_n: int = 10) -> list[dict]:
+    def search(self, query: str, top_n: int = 10) -> List[Dict]:
         """
         Searches the database for matches on both 'code' and 'title' fields,
         prioritizing exact matches, prefix matches, and then partial matches.
@@ -112,7 +113,7 @@ class NAICS2022Service:
         # Return only the matched entries, without scores
         return [entry for _, entry in results[:top_n]]
 
-    def industry_hierarchy(self, code: str) -> dict | None:
+    def industry_hierarchy(self, code: str) -> Optional[Dict]:
         """
         Generates a hierarchical representation of NAICS code data based on the given code,
         handling different lengths (2, 3, 4, 5, or 6 digits).
