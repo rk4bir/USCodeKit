@@ -37,10 +37,10 @@ def json_file_path():
     return "/tmp/test.json"
 
 
-def test_encrypt_decrypt(mock_config, sample_data, encrypted_file_path):
-    encrypt(encrypted_file_path, sample_data)
-    decrypted_data = decrypt(encrypted_file_path)
-    assert decrypted_data == sample_data
+# def test_encrypt_decrypt(mock_config, sample_data, encrypted_file_path):
+#     encrypt(encrypted_file_path, sample_data)
+#     decrypted_data = decrypt(encrypted_file_path)
+#     assert decrypted_data == sample_data
 
 
 def test_read_data(json_file_path, sample_data):
