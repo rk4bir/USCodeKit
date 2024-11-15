@@ -13,6 +13,7 @@
   - [phone](./phone/README.md)
   - [zip_code](./zip_code/README.md)
   - [NAICS](./naics/README.md)
+- [Resource Setup Guide](./setup/README.md)
 - [Usage](#usage)
 
 ## Installation

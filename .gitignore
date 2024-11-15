@@ -33,10 +33,14 @@ management/
 scripts/*.sh
 scripts/_core.py
 scripts/report.py
-uscodekit/data/geo/*
-uscodekit/data/naics/2022/database.json
 key.key
 exp.ipynb
 poetry.lock
 .venv/
 creds/
+changelog.py
+uscodekit/data/geo/*.json
+uscodekit/data/geo/*.bin
+uscodekit/data/geo/*.gz
+uscodekit/data/geo/*.bin
+uscodekit/data/naics/2022/*.json
