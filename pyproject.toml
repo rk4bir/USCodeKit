@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "uscodekit"
-version = "2024.1.2"
+version = "2024.2.0"
 description = "A Python package for US codes validation, extraction, formatting, cleaning, and more."
 authors = ["Raihan Kabir <r.kabir01@proton.me>"]
 license = "MIT"

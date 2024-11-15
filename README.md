@@ -28,7 +28,7 @@
 Using `pip`
 
 ```bash
-pip install uscodekit
+pip install -U uscodekit
 ```
 
 Using `poetry`

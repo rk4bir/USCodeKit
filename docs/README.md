@@ -9,19 +9,18 @@
 ## Table of Contents
 
 - [Installation](#installation)
-- [Module](#functions)
+- [Resource Setup Guide](./setup/README.md)
+- [Modules](#functions)
   - [phone](./phone/README.md)
   - [zip_code](./zip_code/README.md)
-  - [NAICS](./naics/README.md)
-- [Resource Setup Guide](./setup/README.md)
-- [Usage](#usage)
+  - [NAICS (2022)](./naics/README.md)
 
 ## Installation
 
 Using `pip`
 
 ```bash
-pip install uscodekit
+pip install -U uscodekit
 ```
 
 Using `poetry`
@@ -29,7 +28,3 @@ Using `poetry`
 ```bash
 poetry add uscodekit
 ```
-
-## Usage
-
-Each function can be used independently for phone number and ZIP code manipulation and validation, or combined to build comprehensive data processing flows related to contact and location information.

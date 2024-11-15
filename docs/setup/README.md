@@ -2,7 +2,7 @@
 
 ## Overview
 
-This script provides utility functions to set up the configuration files required by the package. It checks for the existence of essential files (encryption key, geo database, and NAICS database) and assists in setting them up by copying and renaming files to their appropriate locations.
+> This script provides utility functions to set up the configuration files required by the package. It checks for the existence of essential files (encryption key, geo database, and NAICS database) and assists in setting them up by copying and renaming files to their appropriate locations. You can download the resources [here](https://drive.google.com/drive/folders/1H0RMW-i2EYQaU3-F8DKPCxCXdyPOVie9?usp=sharing).
 
 ---
 
