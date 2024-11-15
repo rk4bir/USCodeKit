@@ -1,4 +1,4 @@
-name: Publish USCodeKit
+name: gh-release
 
 on:
   push:
