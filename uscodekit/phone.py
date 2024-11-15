@@ -190,11 +190,13 @@ def phone_number_insight(phone: str) -> Dict[str, Optional[str]]:
             - location (dict): A dictionary with 'latitude' and 'longitude' of the area.
             - timezone (dict): A dictionary with 'name' and 'offset' of the timezone.
     """
-    area_code = get_area_code(phone)
+    cp = cleaned_phone(phone)
+    pp = prettify(cp)
+    area_code = get_area_code(pp)
     npa_db = GeoService()
     pinfo = npa_db.get_phone_info(area_code)
     return {
-        "phone": prettify(phone),
+        "phone": pp,
         "areaCode": area_code,
         "city": pinfo.get("city", ""),
         "state": pinfo.get("state", ""),

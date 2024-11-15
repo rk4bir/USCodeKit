@@ -29,7 +29,7 @@ def get_database() -> List[Dict]:
     try:
         print("Loading encrypted database...", end="")
         # retrieve encryption key
-        with open(Config.encryption_key, "rb") as key_file:
+        with open(Config.encryption_key_fp, "rb") as key_file:
             key = key_file.read()
 
         cipher_suite = Fernet(key)

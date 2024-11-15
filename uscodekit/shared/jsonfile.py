@@ -1,16 +1,17 @@
 # uscodekit/shared/jsonfile.py
 
 import json
-from typing import List, Dict, Union
+from typing import List, Dict, Union, Any
 
 from cryptography.fernet import Fernet
 
 from uscodekit.configs import Config
 
 
-def decrypt(file_path: str) -> Dict:
-    with open(Config.encryption_key, "rb") as key_file:
-        key = key_file.read()
+def decrypt(file_path: str, key: Any = None) -> Dict:
+    if key is None:
+        with open(Config.encryption_key_fp, "rb") as key_file:
+            key = key_file.read()
 
     cipher_suite = Fernet(key)
 
@@ -23,9 +24,10 @@ def decrypt(file_path: str) -> Dict:
     return json_data
 
 
-def encrypt(file_path: str, data: Dict) -> None:
-    with open(Config.encryption_key, "rb") as key_file:
-        key = key_file.read()
+def encrypt(file_path: str, data: Dict, key: Any = None) -> None:
+    if key is None:
+        with open(Config.encryption_key_fp, "rb") as key_file:
+            key = key_file.read()
 
     cipher_suite = Fernet(key)
     encrypted_data = cipher_suite.encrypt(json.dumps(data).encode("utf-8"))

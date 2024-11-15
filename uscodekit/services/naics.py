@@ -9,7 +9,9 @@ from uscodekit.shared.jsonfile import decrypt
 class NAICS2022Service:
 
     def __init__(self):
-        if os.path.isfile(Config.encryption_key):
+        if os.path.isfile(Config.encryption_key_fp) and os.path.isfile(
+            NAICS2022Config.encrypted_database_fp
+        ):
             self.data = self.search_database
         else:
             print(Config.file_missing_message)
@@ -28,7 +30,9 @@ class NAICS2022Service:
             list[dict]: A list of dictionaries containing the search database data.
         """
 
-        if os.path.isfile(Config.encryption_key):
+        if os.path.isfile(Config.encryption_key_fp) and os.path.isfile(
+            NAICS2022Config.encrypted_database_fp
+        ):
             return decrypt(NAICS2022Config.encrypted_database_fp)
         else:
             print(Config.file_missing_message)
