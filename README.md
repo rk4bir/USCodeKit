@@ -21,7 +21,7 @@
 
 ## Docs
 
-> [Hosted Docs](https://rk4bir.github.io/USCodeKit/)
+> [https://rk4bir.github.io/USCodeKit/](https://rk4bir.github.io/USCodeKit/)
 
 - [Installation](https://rk4bir.github.io/USCodeKit/#installation)
 - [Getting Started](https://rk4bir.github.io/USCodeKit/)
