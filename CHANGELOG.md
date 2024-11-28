@@ -14,7 +14,6 @@
 - **Version Update**: Incremented package version from `2024.2.0` to `2024.2.1`.
 
 - **Packaging**: Included additional files in the package distribution:
-  - `CHANGELOG.md`: Documenting the history of changes and updates.
   - `README.md`: Providing an overview and usage instructions for the package.
   - `LICENSE`: Specifying the licensing terms for the package.
 
